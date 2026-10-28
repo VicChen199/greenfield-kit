@@ -1,0 +1,15 @@
+# Greenfield kit
+
+This suite is a build pipeline.
+
+**brainstorm** offers two or three approaches and waits. **architect** writes `docs/architecture.md`, including one sequence diagram per route and one system-map flowchart from the screen through the server and any table or file and back. **phase-plan** turns that contract into `docs/plan.md`. **greenfield** builds every ready phase with four subagents shipped in `greenfield/assets/agents`: test-writer, implementer, reviewer, and verifier. **feature-plan** writes one feature on an existing app, and **tdd-slice** builds one slice of it. **tdd** is the bugfix path.
+
+Invoke them as `/brainstorm`, `/architect`, `/phase-plan`, `/greenfield`, `/feature-plan`, `/tdd-slice`, and `/tdd`.
+
+`greenfield/references/user-rule.md` is Cursor user-rules text. It is not applied by copying the skill. Paste it into Cursor Settings → Rules only if you want those rules.
+
+## Paste this to your agent
+
+```
+Copy every skill folder in this repo into my skills directory, verbatim, and stop. The folders are brainstorm, architect, phase-plan, greenfield, feature-plan, tdd-slice, and tdd. On Cursor, if a user Agent Store is listed in your context, write them to skills/<name>/ in that store. If no user store is listed, write them to ~/.cursor/skills/<name>/ and say they are on this machine only. For one project, write them to .cursor/skills/<name>/. On Antigravity, write them to ~/.gemini/config/skills/<name>/ for every workspace, or to .agents/skills/<name>/ for one project. Do not rewrite the files. Do not write into ~/.cursor/skills-cursor/.
+```
