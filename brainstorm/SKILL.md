@@ -19,7 +19,7 @@ Do not run it for a bugfix, a small edit, or a request that already names the ap
 
 ## Authority
 
-While this procedure is running, do not write application code, `docs/architecture.md`, `docs/plan.md`, or `docs/features/`. Do not commit. Do not open a pull request.
+While this procedure is running, do not write application code, `docs/architecture.md`, a survey contract `docs/<area>.md`, `docs/plan.md`, or `docs/features/`. Do not commit. Do not open a pull request.
 
 A pick is the user choosing one option. It is not permission to build.
 
@@ -36,8 +36,8 @@ Skip the menu when the user's message already picks the approach.
 Stop. Name the choice in one line, then send them to the next step:
 
 - A new product, and `docs/architecture.md` does not exist: `/architect`.
-- An existing app, and `docs/architecture.md` does not exist: `/survey`.
-- One feature, and `docs/architecture.md` already exists: `/feature-plan`.
+- An existing app, and no survey contract exists in `docs/`: `/survey`. A survey contract is `docs/<area>.md` with the headings `## Route traces`, `## System map`, and `## API catalog`.
+- One feature, and a survey contract or `docs/architecture.md` exists: `/feature-plan`.
 - A change to an existing repo that should be researched and built from Cursor's plan: switch to Plan mode with Shift+Tab. In the CLI, `/plan` is that mode switch.
 
 If the user is already in Plan mode, stop offering options. Let Plan mode research the repo and write its one implementation plan.

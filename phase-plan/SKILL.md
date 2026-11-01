@@ -16,7 +16,7 @@ While this skill is active, ignore the wait-for-a-pick user rule. Write only `do
 
 ## Steps
 
-1. Read `docs/architecture.md`. If it is missing, stop. An app that already has a route, a schema, or a screen uses `/survey`. A blank repo uses `/architect`.
+1. Read `docs/architecture.md`. If it is missing, stop. An app that already runs uses `/survey`, then `/feature-plan`. A blank repo uses `/architect`. This skill does not read a survey contract.
 2. If Open decisions has any item, stop and list those items. Do not plan around an open stack or schema choice.
 3. Read the system map, the route traces, and the API catalog. If any of those sections is missing, stop and tell the user to run `/architect`. If an operation id is not in all three, stop and name it. Do not plan that operation.
 4. Write `docs/plan.md` using [references/plan-template.md](references/plan-template.md).

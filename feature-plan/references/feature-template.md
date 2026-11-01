@@ -1,8 +1,8 @@
 # Feature: <slug>
 
-Source contract: `docs/architecture.md`
+Source contract: `docs/<area>.md`
 
-Architecture patched: yes | no
+Contract patched: yes | no
 
 ## Slice: <name>
 status: todo
@@ -14,6 +14,8 @@ done_when:
 tables:
 migration:
 existing_tests:
+
+`Source contract:` is the path `/feature-plan` resolved. That is the survey file `docs/<area>.md`, or `docs/architecture.md` when that is the only contract.
 
 Add the next slice under the previous one. `status` is `todo` or `done`. `/tdd-slice` builds the first `todo` slice in this chat. `/greenfield` builds every `todo` slice.
 

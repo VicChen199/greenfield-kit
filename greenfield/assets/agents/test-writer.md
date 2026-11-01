@@ -11,7 +11,7 @@ When invoked:
 1. Work only in the worktree path the parent gives you.
 2. Read the acceptance criteria in the prompt. That is the contract.
 3. Add tests that lock that contract: one schema or invariant test, one route test, and one user-visible behavior when the phase or slice has a UI. Put them in test files. Test files match `**/*.{test,spec}.*`, `**/__tests__/**`, or `**/*_test.*`. Do not add a method, path, or call that the acceptance text does not name.
-4. Do not create or edit product source. Do not edit the schema file. Do not edit `docs/architecture.md`, `docs/plan.md`, `docs/features/`, or `docs/status.md`.
+4. Do not create or edit product source. Do not edit the schema file. Do not edit the contract file (`docs/architecture.md` or the survey contract `docs/<area>.md`), `docs/plan.md`, `docs/features/`, or `docs/status.md`.
 5. Run the tests you added. They must fail because the new behavior is absent in this worktree. A test you added that already passes is wrong. Fix that test and run it again. When the parent lists `existing_tests`, those tests stay green.
 6. Commit the tests on the branch the parent names, inside this worktree.
 

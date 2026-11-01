@@ -1,6 +1,6 @@
 ---
 name: greenfield
-description: Build every ready phase in docs/plan.md, or every todo slice in a named docs/features/<slug>.md. Test-writer and implementer run together from the contract in separate worktrees, then the parent merges, reviews, and verifies. Use when the user invokes /greenfield. Start it as a Custom Mode. One slice in this chat uses /tdd-slice.
+description: Build every ready phase in docs/plan.md, or every todo slice in a named docs/features/<slug>.md. A from-scratch run reads docs/architecture.md. A feature run reads the survey contract docs/<area>.md, or docs/architecture.md when that is the only contract. Test-writer and implementer run together from the contract in separate worktrees, then the parent merges, reviews, and verifies. Use when the user invokes /greenfield. Start it as a Custom Mode. One slice in this chat uses /tdd-slice.
 disable-model-invocation: true
 icon: rocket
 color: orange
@@ -14,9 +14,9 @@ Start this skill as a Custom Mode so it stays in context for the session. The us
 
 ## Authority
 
-While this skill is active, you may create and edit the files the plan or the slice owns, install the stack the architecture names, and commit each finished phase or slice on the current branch. Do not open a pull request. Do not push unless the user asks. Do not apply the wait-for-a-pick, change-only-named-files, or copy-paste-the-git-command user rules. Builder worktrees do not get a new Cursor window. Do not run `cursor -n` for them.
+While this skill is active, you may create and edit the files the plan or the slice owns, install the stack the contract names, and commit each finished phase or slice on the current branch. Do not open a pull request. Do not push unless the user asks. Do not apply the wait-for-a-pick, change-only-named-files, or copy-paste-the-git-command user rules. Builder worktrees do not get a new Cursor window. Do not run `cursor -n` for them.
 
-Do not rewrite `docs/architecture.md` or `docs/plan.md`. On a feature file, set the finished slice's `status` to `done` and leave every other line as it was. If the code and the contract disagree, stop and report. Append only to `docs/status.md`.
+Do not rewrite `docs/architecture.md`, a survey contract, or `docs/plan.md`. On a feature file, set the finished slice's `status` to `done` and leave every other line as it was. If the code and the contract disagree, stop and report. Append only to `docs/status.md`.
 
 ## Which file
 
@@ -24,14 +24,29 @@ Do not rewrite `docs/architecture.md` or `docs/plan.md`. On a feature file, set 
 2. A message that names `docs/features/<slug>.md` executes that file. If it is missing, stop and name `/feature-plan`.
 3. A feature run skips phase 0. Slices run in document order. A slice is ready when every slice above it has `status` `done`.
 
+## Contract file
+
+A from-scratch run, the user message `Build.`, uses `docs/architecture.md`. If that file is missing, stop. A blank repo uses `/architect`. An app that already runs uses `/survey`, then `/feature-plan`. Do not invent a contract. Do not read a survey contract for `Build.`
+
+A feature run resolves the contract in this order:
+
+1. The path the user named.
+2. The path on the `Source contract:` line of the feature file, when that file exists.
+3. The only survey contract in `docs/`. A survey contract is a file `docs/<area>.md` that contains the headings `## Route traces`, `## System map`, and `## API catalog`. `docs/architecture.md`, `docs/plan.md`, `docs/status.md`, and files under `docs/features/` are not survey contracts.
+4. `docs/architecture.md`, when no survey contract exists and that file exists.
+
+When more than one survey contract exists and steps 1 and 2 did not name one, stop and list the paths. Do not choose one.
+
+When no contract exists, stop. An app that already runs uses `/survey`. A blank repo uses `/architect`.
+
 ## Before the first phase
 
-1. If `docs/architecture.md` is missing, stop. An app that already has a route, a schema, or a screen uses `/survey`. A blank repo uses `/architect`. Do not invent a contract.
-2. If Open decisions in the architecture has any item, stop and list those items.
-3. Read the system map, the route traces, and the API catalog. Stop if any section is missing. Stop if a method, path, or call named in the plan or the feature file has no route trace or no arrow on the system map. Name that operation. Do not invent it and do not add it to the architecture.
-4. On a feature run, if the feature file and the architecture disagree about a journey, route, table, or screen this feature touches, stop. Tell the user to run `/feature-plan` again. Do not write code.
+1. Resolve the contract as above.
+2. If Open decisions in the contract has any item, stop and list those items.
+3. Read the system map, the route traces, and the API catalog. Stop if any section is missing. Stop if a method, path, or call named in the plan or the feature file has no route trace or no arrow on the system map. Name that operation. Do not invent it and do not add it to the contract.
+4. On a feature run, if the feature file and the contract disagree about a journey, route, table, or screen this feature touches, stop. Tell the user to run `/feature-plan` again. Do not write code.
 5. Copy this skill's `assets/agents/*.md` into the project's `.cursor/agents/` when a file of that name is missing. The skill directory is the folder that contains this `SKILL.md`.
-6. If `.cursor/rules/stack.mdc` is missing, write it from the architecture's stack section using [references/stack-rule.md](references/stack-rule.md). Set `alwaysApply: true`.
+6. If `.cursor/rules/stack.mdc` is missing, write it from the contract's stack section using [references/stack-rule.md](references/stack-rule.md). Set `alwaysApply: true`.
 7. Create `docs/status.md` when it is missing. Add `.worktrees/` to `.gitignore` when that entry is missing.
 
 ## Who does the work
