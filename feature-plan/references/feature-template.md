@@ -15,7 +15,7 @@ tables:
 migration:
 existing_tests:
 
-Add the next slice under the previous one. `status` is `todo` or `done`. `/tdd-slice` builds the first `todo` slice.
+Add the next slice under the previous one. `status` is `todo` or `done`. `/tdd-slice` builds the first `todo` slice in this chat. `/greenfield` builds every `todo` slice.
 
 `migration` names the schema change. Adding a column, adding a table, or a backfill belongs here. Changing a column type in place does not.
 

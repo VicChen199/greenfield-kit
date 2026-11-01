@@ -1,6 +1,6 @@
 ---
 name: feature-plan
-description: Plan one feature on an existing app. Patch docs/architecture.md only for the journey, route, table, or screen this feature changes, write docs/features/<slug>.md, and stop. Use when the user invokes /feature-plan. A blank repo uses /architect and /phase-plan instead.
+description: Plan one feature on an existing app. Patch docs/architecture.md only for the journey, route, table, or screen this feature changes, write docs/features/<slug>.md, and stop. Use when the user invokes /feature-plan. An app that already runs and has no contract uses /survey. A blank repo uses /architect and /phase-plan instead.
 disable-model-invocation: true
 icon: code
 color: cyan
@@ -16,7 +16,7 @@ While this skill is active, ignore the wait-for-a-pick user rule except for the 
 
 ## Steps
 
-1. Read `docs/architecture.md`. If it is missing, stop and tell the user to run `/architect`. This skill does not create the first contract.
+1. Read `docs/architecture.md`. If it is missing, stop. An app that already has a route, a schema, or a screen uses `/survey`. A blank repo uses `/architect`. This skill does not create the first contract.
 2. Read the current schema, routes, and tests in the repo so the plan matches the code, not only the document.
 3. Name the feature with a kebab-case slug.
 4. If a schema or stack choice is not already in the architecture or the user message, ask one batched round with a recommendation on each question. Write neither file until they answer.
@@ -27,11 +27,18 @@ While this skill is active, ignore the wait-for-a-pick user rule except for the 
 
 ## Done
 
-Stop. Tell the user the feature file path. They edit `docs/architecture.md` and the feature file before `/tdd-slice`. If they edit the architecture after this plan exists, they run `/feature-plan` again before `/tdd-slice`.
+Stop. Tell the user the feature file path. They edit `docs/architecture.md` and the feature file before a build. If they edit the architecture after this plan exists, they run `/feature-plan` again before `/tdd-slice` or `/greenfield`.
 
-The build command is:
+One slice in this chat:
 
 ```text
 /tdd-slice
 Build the next slice in docs/features/<slug>.md.
+```
+
+Every `todo` slice, with the greenfield subagents:
+
+```text
+/greenfield
+Build every todo slice in docs/features/<slug>.md.
 ```

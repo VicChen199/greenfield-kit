@@ -1,6 +1,6 @@
 ---
 name: tdd-slice
-description: Build one slice in this chat. Write failing tests from the feature plan or the named slice, then implement until they pass. Use when the user invokes /tdd-slice. A from-scratch multi-phase build uses /greenfield. A bugfix uses /tdd.
+description: Build one slice in this chat. Write failing tests from the feature plan or the named slice, then implement until they pass. Use when the user invokes /tdd-slice. Every todo slice in a feature file uses /greenfield. A from-scratch multi-phase build uses /greenfield. A bugfix uses /tdd.
 disable-model-invocation: true
 icon: beaker
 color: green
@@ -20,7 +20,7 @@ While this skill is active, you may create and edit the files this slice owns, i
 2. If those two disagree about a journey, route, table, or screen this feature touches, stop. Tell the user to run `/feature-plan` again. Do not write code.
 3. If the slice names a method, path, or call that has no route trace or no arrow on the system map, stop. Tell the user to run `/feature-plan`. Do not write that route.
 4. Build the slice they named. If they did not name one, build the first slice whose `status` is `todo`.
-5. If there is no feature file, build the one slice they described and follow `docs/architecture.md` when it exists. Say so when the contract file is missing. The slice still only builds operations that have a route trace and an arrow on the system map.
+5. If there is no feature file, build the one slice they described and follow `docs/architecture.md` when it exists. Say so when the contract file is missing. An app that already has a route, a schema, or a screen uses `/survey`. A blank repo uses `/architect`. The slice still only builds operations that have a route trace and an arrow on the system map.
 
 ## Tests, then code
 

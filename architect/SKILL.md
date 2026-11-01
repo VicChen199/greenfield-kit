@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Write or update docs/architecture.md for a new product, then stop. Use when the user invokes /architect for a blank repo or a full contract change. A feature on an existing app uses /feature-plan instead.
+description: Write or update docs/architecture.md for a new product, then stop. Use when the user invokes /architect for a blank repo or a full contract change. An app that already runs and has no contract uses /survey. A feature on an existing app uses /feature-plan instead.
 disable-model-invocation: true
 icon: book-open
 color: blue
@@ -17,6 +17,8 @@ While this skill is active, ignore the wait-for-a-pick user rule except for the 
 ## When the architecture file is missing
 
 This is the blank-repo path.
+
+If the repo already has a route, a schema, or a screen, stop and tell the user to run `/survey`. This skill does not map an app that already runs.
 
 1. Read the request.
 2. If the user said "hackathon", "pick for me", or "one shot", choose the stack and schema and record every choice under Assumptions. Do not ask. For a browser product with no named stack, use Next.js, TypeScript, and Tailwind, and Postgres when the product stores data.

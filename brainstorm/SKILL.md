@@ -1,6 +1,6 @@
 ---
 name: brainstorm
-description: "Offer two or three named approaches and wait. Use when the user asks for a plan, a design, options, or a brainstorm, and the approach is still open. Stay idle when /architect, /phase-plan, /feature-plan, /tdd-slice, or /greenfield is active, and stay idle for a bugfix, a small edit, or a build they already approved."
+description: "Offer two or three named approaches and wait. Use when the user asks for a plan, a design, options, or a brainstorm, and the approach is still open. Stay idle when /architect, /survey, /phase-plan, /feature-plan, /tdd-slice, or /greenfield is active, and stay idle for a bugfix, a small edit, or a build they already approved."
 icon: lightbulb
 color: yellow
 ---
@@ -13,7 +13,7 @@ This skill loads on its own when the user is still deciding. It is also a Custom
 
 ## Stay idle
 
-Do not run this procedure when any of these skills is active: `/architect`, `/phase-plan`, `/feature-plan`, `/tdd-slice`, `/greenfield`.
+Do not run this procedure when any of these skills is active: `/architect`, `/survey`, `/phase-plan`, `/feature-plan`, `/tdd-slice`, `/greenfield`.
 
 Do not run it for a bugfix, a small edit, or a request that already names the approach and says to build it. Do not run it again after the user has picked and Plan mode is writing the implementation plan.
 
@@ -36,6 +36,7 @@ Skip the menu when the user's message already picks the approach.
 Stop. Name the choice in one line, then send them to the next step:
 
 - A new product, and `docs/architecture.md` does not exist: `/architect`.
+- An existing app, and `docs/architecture.md` does not exist: `/survey`.
 - One feature, and `docs/architecture.md` already exists: `/feature-plan`.
 - A change to an existing repo that should be researched and built from Cursor's plan: switch to Plan mode with Shift+Tab. In the CLI, `/plan` is that mode switch.
 
